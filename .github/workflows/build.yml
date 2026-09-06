@@ -69,6 +69,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.ref_name }}
         run: |
-          gh release create "$TAG" release-assets/windows/* release-assets/macos/* \
-            --title "XYZW Game Client $TAG" \
-            --generate-notes
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" release-assets/windows/* release-assets/macos/* --clobber
+          else
+            gh release create "$TAG" release-assets/windows/* release-assets/macos/* \
+              --title "XYZW Game Client $TAG" \
+              --generate-notes
+          fi
