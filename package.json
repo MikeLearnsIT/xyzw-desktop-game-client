@@ -8,8 +8,8 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist:win": "electron-builder --win nsis portable",
-    "dist:mac": "electron-builder --mac dmg zip"
+    "dist:win": "electron-builder --win nsis portable --publish never",
+    "dist:mac": "electron-builder --mac dmg zip --publish never"
   },
   "devDependencies": {
     "electron": "^37.0.0",
